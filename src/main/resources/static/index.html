@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Convertisseur de température | SEG 3502</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<main class="page">
+
+    <header class="topbar">
+        <div class="brand">
+            <span class="logo">°C</span>
+            <span>Convertisseur de température</span>
+        </div>
+
+        <span class="course">SEG 3502 · Laboratoire 9</span>
+    </header>
+
+    <section class="hero">
+        <div class="eyebrow">API REST sécurisée</div>
+
+        <h1>
+            Convertissez vos températures
+            <span>en toute simplicité.</span>
+        </h1>
+
+        <p>
+            Cette application permet de convertir des degrés Celsius
+            en Fahrenheit, et inversement. L'accès aux services est
+            protégé par une authentification HTTP Basic.
+        </p>
+
+        <div class="status">
+            <span class="dot"></span>
+            Authentification requise pour chaque requête
+        </div>
+    </section>
+
+    <section class="cards">
+
+        <article class="card">
+            <div class="card-top">
+                <span class="pill">GET</span>
+                <span class="symbol">°C → °F</span>
+            </div>
+
+            <h2>De Celsius à Fahrenheit</h2>
+
+            <p>
+                Convertissez une température exprimée
+                en degrés Celsius.
+            </p>
+
+            <code>
+                /temperature-converter/celsius-fahrenheit/50
+            </code>
+
+            <a class="button"
+               href="/temperature-converter/celsius-fahrenheit/50">
+                Essayer avec 50 °C
+            </a>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <span class="pill">GET</span>
+                <span class="symbol">°F → °C</span>
+            </div>
+
+            <h2>De Fahrenheit à Celsius</h2>
+
+            <p>
+                Convertissez une température exprimée
+                en degrés Fahrenheit.
+            </p>
+
+            <code>
+                /temperature-converter/fahrenheit-celsius/122
+            </code>
+
+            <a class="button"
+               href="/temperature-converter/fahrenheit-celsius/122">
+                Essayer avec 122 °F
+            </a>
+        </article>
+
+    </section>
+
+    <section class="help">
+        <h2>Comment utiliser l'API ?</h2>
+
+        <p>
+            Pour tester les services avec cURL, envoyez
+            le nom d'utilisateur et le mot de passe
+            dans chaque requête :
+        </p>
+
+        <pre><code>curl -u user1:pass1 http://localhost:8080/temperature-converter/celsius-fahrenheit/50</code></pre>
+
+        <p class="note">
+            Cette page est une présentation facultative.
+            Les conversions restent disponibles directement
+            dans l'API REST.
+        </p>
+    </section>
+
+    <footer>
+        Université d'Ottawa · SEG 3502 · Authentification en mémoire
+    </footer>
+
+</main>
+</body>
+</html>

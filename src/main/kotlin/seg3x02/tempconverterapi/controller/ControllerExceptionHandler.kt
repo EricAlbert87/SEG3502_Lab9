@@ -1,16 +1,19 @@
+
 package seg3x02.tempconverterapi.controller
 
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 
 @RestControllerAdvice
 class ControllerExceptionHandler {
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun handleException(ex: Exception): ResponseEntity<String> {
-        return ResponseEntity.badRequest().body("Unable to process request")
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException::class)
+    fun handleInvalidNumber(
+        ex: MethodArgumentTypeMismatchException
+    ): ResponseEntity<String> {
+        return ResponseEntity.badRequest()
+            .body("La valeur fournie doit être un nombre valide.")
     }
 }

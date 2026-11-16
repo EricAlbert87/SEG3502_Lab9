@@ -1,6 +1,0 @@
-
-.recherche { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-label { font-weight: 600; }
-input { padding: 11px; border: 1px solid #c8d8d8; border-radius: 9px; width: 130px; font: inherit; }
-button { padding: 12px 18px; color: white; background: #176474; border: 0; border-radius: 9px; cursor: pointer; }
-.erreur { color: #942633; }
