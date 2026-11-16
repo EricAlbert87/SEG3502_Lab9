@@ -5,30 +5,41 @@
 
 API REST développée en Kotlin et Spring Boot.
 
-### Fonctionnalités
+
+## Fonctionnalités
 
 - Conversion Celsius vers Fahrenheit.
 - Conversion Fahrenheit vers Celsius.
-- Authentification HTTP Basic obligatoire.
-- Authentification en mémoire avec deux utilisateurs.
-- Page de présentation en français.
+- Authentification HTTP Basic obligatoire pour l'API.
+- Deux utilisateurs configurés en mémoire avec Spring Security.
+- Page de connexion personnalisée en français.
+- Validation des identifiants avec l'API REST.
+- Messages d'erreur en français.
+- Affichage des résultats dans l'interface Web.
+- Déconnexion de l'interface.
+- Interface responsive avec une palette bleu-vert.
 
-### Utilisateurs de démonstration
+## Comptes de démonstration
 
 - user1 / pass1
 - user2 / pass2
 
-### Exécution
+## Exécution
 
-Java 21 est nécessaire.
-
-```bash
-chmod +x gradlew
+```bash id="9srxep"
 ./gradlew clean build
 ./gradlew bootRun
 ```
 
-Application : http://localhost:8080
+Ouvrir http://localhost:8080.
+
+Les services REST restent accessibles à partir de
+/temperature-converter/ et exigent HTTP Basic.
+
+La page HTML est une interface de démonstration.
+Pour une utilisation en production, HTTPS et
+une gestion des identifiants adaptée sont nécessaires.
+
 
 ### Exemples
 

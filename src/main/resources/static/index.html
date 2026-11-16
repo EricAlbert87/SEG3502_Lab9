@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,22 +9,233 @@
     <title>Convertisseur de température | SEG 3502</title>
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:,">
+    <script defer src="/js/auth.js"></script>
 </head>
 
 <body>
-<main class="page">
 
-    <header class="topbar">
-        <div class="brand">
-            <span class="logo">°C</span>
-            <span>Convertisseur de température</span>
+<!-- ========================================= -->
+<!-- ÉCRAN DE CONNEXION                        -->
+<!-- ========================================= -->
+
+<section id="ecran-connexion" class="auth-screen">
+
+    <div class="auth-layout">
+
+        <!-- Partie gauche : présentation -->
+
+        <div class="auth-presentation">
+
+            <div class="auth-brand">
+                <span class="auth-brand-icon">°C</span>
+                <span>SEG 3502 · Laboratoire 9</span>
+            </div>
+
+            <div class="auth-presentation-content">
+
+                <span class="auth-tag">
+                    AUTHENTIFICATION HTTP BASIC
+                </span>
+
+                <h1>
+                    Votre espace
+                    <span>de conversion.</span>
+                </h1>
+
+                <p>
+                    Une application simple pour convertir
+                    vos températures, avec un accès
+                    contrôlé par Spring Security.
+                </p>
+
+                <div class="auth-features">
+
+                    <div>
+                        <span class="feature-symbol">↗</span>
+                        Celsius vers Fahrenheit
+                    </div>
+
+                    <div>
+                        <span class="feature-symbol">↙</span>
+                        Fahrenheit vers Celsius
+                    </div>
+
+                    <div>
+                        <span class="feature-symbol">✓</span>
+                        Authentification en mémoire
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="auth-bottom">
+                Université d'Ottawa · Automne 2026
+            </div>
+
         </div>
 
-        <span class="course">SEG 3502 · Laboratoire 9</span>
+        <!-- Partie droite : formulaire -->
+
+        <div class="auth-form-side">
+
+            <div class="auth-form-card">
+
+                <div class="auth-lock">🔐</div>
+
+                <span class="auth-small-label">
+                    BIENVENUE
+                </span>
+
+                <h2>Connexion</h2>
+
+                <p class="auth-description">
+                    Entrez vos identifiants pour accéder
+                    au convertisseur de température.
+                </p>
+
+                <form id="formulaire-connexion">
+
+                    <div class="auth-field">
+
+                        <label for="nom-utilisateur">
+                            Nom d'utilisateur
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nom-utilisateur"
+                            name="username"
+                            placeholder="Votre nom d'utilisateur"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label for="mot-de-passe">
+                            Mot de passe
+                        </label>
+
+                        <input
+                            type="password"
+                            id="mot-de-passe"
+                            name="password"
+                            placeholder="Votre mot de passe"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Messages d'erreur -->
+
+                    <p
+                        id="message-connexion"
+                        class="auth-message"
+                        role="alert"
+                        aria-live="polite">
+                    </p>
+
+                    <!-- Bouton de connexion -->
+
+                    <button
+                        id="bouton-connexion"
+                        type="submit"
+                        class="auth-submit">
+
+                        Se connecter
+
+                        <span aria-hidden="true">→</span>
+
+                    </button>
+
+                </form>
+
+                <!-- Informations -->
+
+                <div class="auth-info">
+
+                    <span class="auth-info-icon">i</span>
+
+                    <p>
+                        Comptes de démonstration :
+                        <strong>user1</strong> et
+                        <strong>user2</strong>.
+                    </p>
+
+                </div>
+
+                <div class="auth-card-footer">
+                    Accès réservé aux utilisateurs autorisés
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- APPLICATION PRINCIPALE                    -->
+<!-- ========================================= -->
+
+<main class="page" id="application" hidden>
+
+    <!-- En-tête -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <span class="logo">°C</span>
+
+            <span>
+                Convertisseur de température
+            </span>
+
+        </div>
+
+        <span class="course">
+            SEG 3502 · Laboratoire 9
+        </span>
+
     </header>
 
+
+    <!-- Utilisateur connecté et déconnexion -->
+
+    <div class="connected-bar">
+
+        <span id="utilisateur-connecte">
+            Utilisateur connecté
+        </span>
+
+        <button
+            type="button"
+            id="bouton-deconnexion"
+            class="logout-button">
+
+            Se déconnecter
+
+        </button>
+
+    </div>
+
+
+    <!-- Présentation principale -->
+
     <section class="hero">
-        <div class="eyebrow">API REST sécurisée</div>
+
+        <div class="eyebrow">
+            API REST sécurisée
+        </div>
 
         <h1>
             Convertissez vos températures
@@ -37,20 +249,41 @@
         </p>
 
         <div class="status">
+
             <span class="dot"></span>
+
             Authentification requise pour chaque requête
+
         </div>
+
     </section>
+
+
+    <!-- ===================================== -->
+    <!-- CARTES DES CONVERSIONS                 -->
+    <!-- ===================================== -->
 
     <section class="cards">
 
+        <!-- Celsius vers Fahrenheit -->
+
         <article class="card">
+
             <div class="card-top">
-                <span class="pill">GET</span>
-                <span class="symbol">°C → °F</span>
+
+                <span class="pill">
+                    GET
+                </span>
+
+                <span class="symbol">
+                    °C → °F
+                </span>
+
             </div>
 
-            <h2>De Celsius à Fahrenheit</h2>
+            <h2>
+                De Celsius à Fahrenheit
+            </h2>
 
             <p>
                 Convertissez une température exprimée
@@ -61,19 +294,36 @@
                 /temperature-converter/celsius-fahrenheit/50
             </code>
 
-            <a class="button"
-               href="/temperature-converter/celsius-fahrenheit/50">
+            <a
+                class="button"
+                href="/temperature-converter/celsius-fahrenheit/50">
+
                 Essayer avec 50 °C
+
             </a>
+
         </article>
 
+
+        <!-- Fahrenheit vers Celsius -->
+
         <article class="card">
+
             <div class="card-top">
-                <span class="pill">GET</span>
-                <span class="symbol">°F → °C</span>
+
+                <span class="pill">
+                    GET
+                </span>
+
+                <span class="symbol">
+                    °F → °C
+                </span>
+
             </div>
 
-            <h2>De Fahrenheit à Celsius</h2>
+            <h2>
+                De Fahrenheit à Celsius
+            </h2>
 
             <p>
                 Convertissez une température exprimée
@@ -84,36 +334,86 @@
                 /temperature-converter/fahrenheit-celsius/122
             </code>
 
-            <a class="button"
-               href="/temperature-converter/fahrenheit-celsius/122">
+            <a
+                class="button"
+                href="/temperature-converter/fahrenheit-celsius/122">
+
                 Essayer avec 122 °F
+
             </a>
+
         </article>
 
     </section>
 
+
+    <!-- ===================================== -->
+    <!-- AFFICHAGE DU RÉSULTAT                  -->
+    <!-- ===================================== -->
+
+    <section
+        id="panneau-resultat"
+        class="result-card"
+        aria-live="polite"
+        hidden>
+
+        <span class="result-label">
+            RÉSULTAT DE LA CONVERSION
+        </span>
+
+        <h2 id="titre-resultat">
+            Conversion terminée
+        </h2>
+
+        <div
+            id="valeur-resultat"
+            class="result-value">
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- SECTION D'AIDE                         -->
+    <!-- ===================================== -->
+
     <section class="help">
-        <h2>Comment utiliser l'API ?</h2>
+
+        <h2>
+            Comment utiliser l'API ?
+        </h2>
 
         <p>
-            Pour tester les services avec cURL, envoyez
-            le nom d'utilisateur et le mot de passe
-            dans chaque requête :
+            Pour tester les services directement avec cURL,
+            envoyez le nom d'utilisateur et le mot de passe
+            dans chaque requête HTTP.
         </p>
 
         <pre><code>curl -u user1:pass1 http://localhost:8080/temperature-converter/celsius-fahrenheit/50</code></pre>
 
-        <p class="note">
-            Cette page est une présentation facultative.
-            Les conversions restent disponibles directement
-            dans l'API REST.
+        <p>
+            Le serveur utilise Spring Security pour vérifier
+            les informations d'identification avant
+            d'autoriser l'accès aux services.
         </p>
+
+        <p class="note">
+            Cette page fournit une interface de démonstration.
+            Les services de conversion restent accessibles
+            directement à partir de l'API REST avec
+            une authentification HTTP Basic valide.
+        </p>
+
     </section>
+
+
+    <!-- Pied de page -->
 
     <footer>
         Université d'Ottawa · SEG 3502 · Authentification en mémoire
     </footer>
 
 </main>
+
 </body>
 </html>

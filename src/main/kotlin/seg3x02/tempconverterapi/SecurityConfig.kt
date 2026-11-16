@@ -53,7 +53,19 @@ class SecurityConfig {
                 )
             }
             .authorizeHttpRequests {
-                it.anyRequest().authenticated()
+                it
+                    .requestMatchers(
+                        "/",
+                        "/index.html",
+                        "/css/**",
+                        "/js/**",
+                        "/favicon.ico",
+                        "/error"
+                    ).permitAll()
+                    .requestMatchers(
+                        "/temperature-converter/**"
+                    ).authenticated()
+                    .anyRequest().authenticated()
             }
             .httpBasic {
                 it.realmName("Convertisseur de température")
