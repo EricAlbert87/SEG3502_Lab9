@@ -1,0 +1,6 @@
+
+.accueil { text-align: center; padding: 48px 24px; }
+.tag { color: #176474; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 12px; }
+h1 { font-size: clamp(26px, 4vw, 42px); }
+p { color: #60747a; }
+a { display: inline-block; background: #176474; color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; margin-top: 16px; }

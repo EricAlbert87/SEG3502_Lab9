@@ -1,0 +1,17 @@
+
+<section class="panneau formulaire">
+  <h1>Connexion</h1>
+  @if (isLoggedIn) {
+    <p>Vous êtes connecté en tant que <strong>{{ loggedUser }}</strong>.</p>
+    <button type="button" (click)="logout()" class="secondaire">Se déconnecter</button>
+  } @else {
+    @if (message) { <p class="erreur" role="alert">{{ message }}</p> }
+    <form (ngSubmit)="checkLogin()">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" name="username" [(ngModel)]="username" autocomplete="username" required>
+      <label for="password">Mot de passe</label>
+      <input id="password" name="password" type="password" [(ngModel)]="password" autocomplete="current-password" required>
+      <button type="submit" [disabled]="enCours">{{ enCours ? 'Connexion...' : 'Se connecter' }}</button>
+    </form>
+  }
+</section>
